@@ -191,3 +191,8 @@ html {
 .bg-waldorf-stone {
   background-color: #78716c;
 }
+
+/* Text shadow for better readability on colorful backgrounds */
+.shadow-text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 6px rgba(255, 255, 255, 0.5);
+}

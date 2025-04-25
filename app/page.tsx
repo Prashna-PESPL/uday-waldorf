@@ -73,7 +73,7 @@ export default function Home() {
     <div className="relative">
       {/* Navigation */}
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollPosition > 50 ? 'opacity-100 translate-y-0' : 'opacity-0 pointer-events-none -translate-y-5'}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500`}
         style={{
           backgroundColor: navBg,
           borderBottom: navBorder,
@@ -81,14 +81,17 @@ export default function Home() {
         aria-label="Main navigation"
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-24">
             <div className="text-xl font-serif font-bold text-stone-800 flex items-center">
-              <span className="text-amber-600 mr-2">
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M12,2L1,21H23L12,2M12,6L19.5,18H4.5L12,6Z" />
-                </svg>
-              </span>
-              UDAY
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/images/logo.png"
+                  alt="UDAY Waldorf School Logo"
+                  width={144}
+                  height={144}
+                  className="mr-2"
+                />
+              </Link>
             </div>
 
             <div className="hidden md:flex space-x-8">
@@ -270,17 +273,17 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animation-delay-300">
               <Button
-                onClick={() => scrollToSection("morning")}
+                onClick={() => scrollToSection("midday")}
                 className="rounded-lg bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-64"
               >
-                Start the Journey <ChevronDown className="ml-2 h-5 w-5" />
+                A Day At Uday <ChevronDown className="ml-2 h-5 w-5" />
               </Button>
               
               <Button
                 onClick={() => scrollToSection("sunset")}
                 className="rounded-lg bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-64"
               >
-                Why Waldorf?
+                Apply
               </Button>
             </div>
           </div>
@@ -393,45 +396,153 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
             Rhythm and Play
           </h2>
-          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-100">
             Our days follow a natural rhythm that brings security and joy to children's lives.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-200">
-              <div className="h-64 md:h-96 relative group">
-                <Image
-                  src="https://images.unsplash.com/photo-1738440618035-ee494c4e66ee"
-                  alt="Children playing outdoors"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-xl font-serif font-semibold mb-2">Outdoor Play</h3>
-                  <p className="text-white/90 text-sm">
-                    Daily time in nature builds physical strength and a deep connection with the natural world.
-                  </p>
+          {/* Slider Container */}
+          <div className="relative overflow-hidden mb-16">
+            {/* Slider Track */}
+            <div className="flex transition-transform duration-500 ease-in-out" id="slider-track">
+              {/* Card 1 */}
+              <div className="w-1/2 flex-shrink-0 px-4">
+                <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-200">
+                  <div className="h-64 md:h-96 relative group">
+                    <Image
+                      src="https://images.unsplash.com/photo-1738440618035-ee494c4e66ee"
+                      alt="Children playing outdoors"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-xl font-serif font-semibold mb-2">Outdoor Play</h3>
+                      <p className="text-white/90 text-sm">
+                        Daily time in nature builds physical strength and a deep connection with the natural world.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="w-1/2 flex-shrink-0 px-4">
+                <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-300">
+                  <div className="h-64 md:h-96 relative group">
+                    <Image
+                      src="https://images.unsplash.com/photo-1542810634-71277d95dcbb"
+                      alt="Children sitting in a story circle"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-xl font-serif font-semibold mb-2">Story Circle</h3>
+                      <p className="text-white/90 text-sm">
+                        Children gather to listen, imagine, and connect with timeless wisdom through storytelling.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="w-1/2 flex-shrink-0 px-4">
+                <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-300">
+                  <div className="h-64 md:h-96 relative group">
+                    <Image
+                      src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9"
+                      alt="Children doing art activities"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-xl font-serif font-semibold mb-2">Creative Expression</h3>
+                      <p className="text-white/90 text-sm">
+                        Art, music, and movement allow children to express themselves freely and joyfully.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 4 */}
+              <div className="w-1/2 flex-shrink-0 px-4">
+                <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-300">
+                  <div className="h-64 md:h-96 relative group">
+                    <Image
+                      src="https://images.unsplash.com/photo-1516627145497-ae6968895b74"
+                      alt="Children engaged in sensory play"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-xl font-serif font-semibold mb-2">Sensory Discovery</h3>
+                      <p className="text-white/90 text-sm">
+                        Hands-on exploration engages all the senses and deepens learning experiences.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-300">
-              <div className="h-64 md:h-96 relative group">
-                <Image
-                  src="https://images.unsplash.com/photo-1542810634-71277d95dcbb"
-                  alt="Children sitting in a story circle"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-xl font-serif font-semibold mb-2">Story Circle</h3>
-                  <p className="text-white/90 text-sm">
-                    Children gather to listen, imagine, and connect with timeless wisdom through storytelling.
-                  </p>
-                </div>
-              </div>
+            {/* Navigation Buttons */}
+            <button 
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-stone-800 p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-10"
+              onClick={() => {
+                const track = document.getElementById('slider-track');
+                if (track) {
+                  const currentTransform = new WebKitCSSMatrix(getComputedStyle(track).transform).m41;
+                  const slideWidth = track.offsetWidth / 2;
+                  if (currentTransform < 0) {
+                    track.style.transform = `translateX(${Math.min(currentTransform + slideWidth, 0)}px)`;
+                  }
+                }
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button 
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-stone-800 p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-10"
+              onClick={() => {
+                const track = document.getElementById('slider-track');
+                if (track) {
+                  const currentTransform = new WebKitCSSMatrix(getComputedStyle(track).transform).m41;
+                  const slideWidth = track.offsetWidth / 2;
+                  const maxScroll = -(track.scrollWidth - track.offsetWidth);
+                  track.style.transform = `translateX(${Math.max(currentTransform - slideWidth, maxScroll)}px)`;
+                }
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* Slider Dots */}
+            <div className="flex justify-center mt-6 space-x-2">
+              <button 
+                className="w-3 h-3 rounded-full bg-stone-300 hover:bg-stone-400 transition-colors"
+                onClick={() => {
+                  const track = document.getElementById('slider-track');
+                  if (track) track.style.transform = 'translateX(0)';
+                }}
+              ></button>
+              <button 
+                className="w-3 h-3 rounded-full bg-stone-300 hover:bg-stone-400 transition-colors"
+                onClick={() => {
+                  const track = document.getElementById('slider-track');
+                  if (track) {
+                    const slideWidth = track.offsetWidth / 2;
+                    track.style.transform = `translateX(-${slideWidth}px)`;
+                  }
+                }}
+              ></button>
             </div>
           </div>
 
@@ -613,7 +724,7 @@ export default function Home() {
               <div className="bg-amber-50 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px] animate-fadeIn animation-delay-500">
                 <div className="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center mb-4 mx-auto">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-serif font-semibold text-stone-800 mb-3 text-center">Wholesome Meals</h3>
@@ -676,20 +787,20 @@ export default function Home() {
       {/* Sunset - Origin Story Section */}
       <section
         ref={(el) => (sectionsRef.current.sunset = el)}
-        className="min-h-screen py-20 relative"
+        className="min-h-screen pt-0 pb-4 relative"
         style={{
           background: "linear-gradient(to bottom, #ffffff 0%, #ffecd2 100%)",
         }}
       >
         {/* Background texture removed */}
-        <svg className="absolute left-0 top-0 h-20 w-full text-white" preserveAspectRatio="none" viewBox="0 0 100 100">
+        <svg className="absolute left-0 top-0 h-12 w-full text-white" preserveAspectRatio="none" viewBox="0 0 100 100">
           <path d="M 0 0 L 100 0 L 100 5 C 80 15, 70 35, 50 35 C 30 35, 20 15, 0 5 Z" fill="currentColor"></path>
         </svg>
-        <div className="container mx-auto px-4 py-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
+        <div className="container mx-auto px-4 pt-4 pb-8 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-2 text-center animate-fadeIn">
             The UDAY Story
           </h2>
-          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-8 animate-fadeIn animation-delay-200">
             Our journey began with a simple wish - to create an education that nurtures the whole child.
           </p>
 
@@ -1027,8 +1138,8 @@ export default function Home() {
                 <Image
                   src="/images/logo.png"
                   alt="UDAY Waldorf Inspired School"
-                  width={50}
-                  height={50}
+                  width={144}
+                  height={144}
                   className="mr-2"
                 />
                 <span className="text-lg font-serif">UDAY Waldorf Inspired School</span>

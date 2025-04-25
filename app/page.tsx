@@ -74,6 +74,7 @@ export default function Home() {
           backgroundColor: navBg,
           borderBottom: navBorder,
         }}
+        aria-label="Main navigation"
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">

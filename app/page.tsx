@@ -7,6 +7,15 @@ import { ChevronDown, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
+const sections = [
+  { id: "dawn", label: "Welcome" },
+  { id: "morning", label: "Learning" },
+  { id: "midday", label: "Rhythm" },
+  { id: "afternoon", label: "Community" },
+  { id: "sunset", label: "Our Story" },
+  { id: "cta", label: "Admissions" },
+]
+
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("dawn")

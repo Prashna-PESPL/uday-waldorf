@@ -298,98 +298,104 @@ export default function Home() {
         }}
       >
         <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-20"></div>
+        <svg className="absolute left-0 top-0 h-20 w-full text-white" preserveAspectRatio="none" viewBox="0 0 100 100">
+          <path d="M 0 0 L 100 0 L 100 5 C 80 15, 70 35, 50 35 C 30 35, 20 15, 0 5 Z" fill="currentColor"></path>
+        </svg>
         <div className="container mx-auto px-4 py-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-12 text-center">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
             Rhythm and Play
           </h2>
+          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+            Our days follow a natural rhythm that brings security and joy to children's lives.
+          </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <div className="rounded-2xl overflow-hidden shadow-lg">
-              <div className="h-64 md:h-96 relative">
+            <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-200">
+              <div className="h-64 md:h-96 relative group">
                 <Image
-                  src="/placeholder.svg?height=800&width=1200"
+                  src="https://images.unsplash.com/photo-1738440618035-ee494c4e66ee"
                   alt="Children playing outdoors"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
-              <div className="p-6 bg-white">
-                <h3 className="text-xl font-serif font-semibold text-stone-800 mb-2">Outdoor Play</h3>
-                <p className="text-stone-600">
-                  Children develop physical coordination, social skills, and a deep connection with nature through daily
-                  outdoor play.
-                </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-xl font-serif font-semibold mb-2">Outdoor Play</h3>
+                  <p className="text-white/90 text-sm">
+                    Daily time in nature builds physical strength and a deep connection with the natural world.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="rounded-2xl overflow-hidden shadow-lg">
-              <div className="h-64 md:h-96 relative">
+            <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-300">
+              <div className="h-64 md:h-96 relative group">
                 <Image
-                  src="/placeholder.svg?height=800&width=1200"
-                  alt="Story circle indoors"
+                  src="https://images.unsplash.com/photo-1542810634-71277d95dcbb"
+                  alt="Children sitting in a story circle"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
-              <div className="p-6 bg-white">
-                <h3 className="text-xl font-serif font-semibold text-stone-800 mb-2">Story Circle</h3>
-                <p className="text-stone-600">
-                  Daily rhythms include story time, where children gather to listen, imagine, and connect with timeless
-                  wisdom.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="max-w-2xl mx-auto bg-white rounded-2xl p-6 shadow-lg">
-            <h3 className="text-xl font-serif font-semibold text-stone-800 mb-4 text-center">Our Daily Rhythm</h3>
-            <div className="space-y-4">
-              <div className="flex items-center p-3 rounded-lg bg-amber-50">
-                <div className="w-16 h-16 rounded-full bg-amber-200 flex items-center justify-center mr-4">
-                  <span className="text-amber-800 font-serif">8:30</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-800">Morning Circle</h4>
-                  <p className="text-sm text-stone-600">Songs, movement, and greetings to start the day</p>
-                </div>
-              </div>
-
-              <div className="flex items-center p-3 rounded-lg bg-emerald-50">
-                <div className="w-16 h-16 rounded-full bg-emerald-200 flex items-center justify-center mr-4">
-                  <span className="text-emerald-800 font-serif">10:00</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-800">Main Lesson</h4>
-                  <p className="text-sm text-stone-600">Integrated learning through stories, art, and movement</p>
-                </div>
-              </div>
-
-              <div className="flex items-center p-3 rounded-lg bg-sky-50">
-                <div className="w-16 h-16 rounded-full bg-sky-200 flex items-center justify-center mr-4">
-                  <span className="text-sky-800 font-serif">11:30</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-800">Outdoor Play</h4>
-                  <p className="text-sm text-stone-600">Free play in nature, gardening, and exploration</p>
-                </div>
-              </div>
-
-              <div className="flex items-center p-3 rounded-lg bg-orange-50">
-                <div className="w-16 h-16 rounded-full bg-orange-200 flex items-center justify-center mr-4">
-                  <span className="text-orange-800 font-serif">12:30</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-800">Lunch & Rest</h4>
-                  <p className="text-sm text-stone-600">Nutritious meal followed by quiet time</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-xl font-serif font-semibold mb-2">Story Circle</h3>
+                  <p className="text-white/90 text-sm">
+                    Children gather to listen, imagine, and connect with timeless wisdom through storytelling.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="text-center mt-12">
+          <div className="max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-amber-100 animate-fadeIn animation-delay-400">
+            <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-6 text-center">Our Daily Rhythm</h3>
+            <div className="space-y-6">
+              <div className="flex items-center p-4 rounded-xl bg-amber-50/80 shadow-sm transform transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
+                <div className="w-16 h-16 rounded-full bg-amber-200 flex items-center justify-center mr-4 shadow-md">
+                  <span className="text-amber-800 font-serif font-medium">8:30</span>
+                </div>
+                <div>
+                  <h4 className="font-medium text-stone-800 text-lg">Morning Circle</h4>
+                  <p className="text-stone-600">Songs, movement, and greetings to start the day</p>
+                </div>
+              </div>
+
+              <div className="flex items-center p-4 rounded-xl bg-emerald-50/80 shadow-sm transform transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
+                <div className="w-16 h-16 rounded-full bg-emerald-200 flex items-center justify-center mr-4 shadow-md">
+                  <span className="text-emerald-800 font-serif font-medium">10:00</span>
+                </div>
+                <div>
+                  <h4 className="font-medium text-stone-800 text-lg">Main Lesson</h4>
+                  <p className="text-stone-600">Integrated learning through stories, art, and movement</p>
+                </div>
+              </div>
+
+              <div className="flex items-center p-4 rounded-xl bg-sky-50/80 shadow-sm transform transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
+                <div className="w-16 h-16 rounded-full bg-sky-200 flex items-center justify-center mr-4 shadow-md">
+                  <span className="text-sky-800 font-serif font-medium">11:30</span>
+                </div>
+                <div>
+                  <h4 className="font-medium text-stone-800 text-lg">Outdoor Play</h4>
+                  <p className="text-stone-600">Free play in nature, gardening, and exploration</p>
+                </div>
+              </div>
+
+              <div className="flex items-center p-4 rounded-xl bg-orange-50/80 shadow-sm transform transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
+                <div className="w-16 h-16 rounded-full bg-orange-200 flex items-center justify-center mr-4 shadow-md">
+                  <span className="text-orange-800 font-serif font-medium">12:30</span>
+                </div>
+                <div>
+                  <h4 className="font-medium text-stone-800 text-lg">Lunch & Rest</h4>
+                  <p className="text-stone-600">Nutritious meal followed by quiet time</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12 animate-fadeIn animation-delay-500">
             <Button
               onClick={() => scrollToSection("afternoon")}
-              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white"
+              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Experience Our Community <ChevronDown className="ml-2 h-4 w-4" />
             </Button>

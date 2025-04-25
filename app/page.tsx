@@ -169,59 +169,37 @@ export default function Home() {
         <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-30 mix-blend-overlay"></div>
         <div className="container mx-auto px-4 py-16 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-            <div className="order-2 md:order-1 text-left">
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-stone-800 mb-6">Welcome to UDAY</h1>
-              <p className="text-xl md:text-2xl font-serif text-stone-700 mb-6 leading-relaxed">
+            <div className="order-2 md:order-1 text-left animate-fadeIn">
+              <h1 className="text-4xl md:text-6xl font-serif font-bold text-stone-800 mb-6 animate-slideUp">Welcome to UDAY</h1>
+              <p className="text-xl md:text-2xl font-serif text-stone-700 mb-6 leading-relaxed animate-slideUp animation-delay-200">
                 Where childhood blossoms naturally
               </p>
-              <p className="text-lg text-stone-600 mb-8">
+              <p className="text-lg text-stone-600 mb-8 animate-slideUp animation-delay-300">
                 UDAY, meaning 'sunrise', is Jaipur's first Waldorf-inspired school. We nurture the whole child through
                 joyful learning, artistic expression, and deep connection with nature.
               </p>
               <Button
                 onClick={() => scrollToSection("morning")}
-                className="rounded-full bg-teal-600 hover:bg-teal-700 text-white px-8 py-6 text-lg"
+                className="rounded-full bg-teal-600 hover:bg-teal-700 text-white px-8 py-6 text-lg animate-slideUp animation-delay-400 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 Start the Journey <ChevronDown className="ml-2 h-5 w-5" />
               </Button>
             </div>
-            <div className="order-1 md:order-2 relative h-64 md:h-auto">
-              <div className="absolute inset-0 bg-white/30 rounded-2xl backdrop-blur-sm"></div>
-              <div className="relative p-6">
-                <div className="relative h-64 md:h-96">
-                  <svg viewBox="0 0 400 400" className="w-full h-full">
-                    <path
-                      d="M200,20 Q230,60 260,40 T320,60 T380,80 T350,120 T380,160 T350,200 T380,240 T350,280 T380,320 T320,340 T260,360 T200,380 T140,360 T80,340 T20,320 T50,280 T20,240 T50,200 T20,160 T50,120 T20,80 T80,60 T140,40 T200,20"
-                      fill="#e0f7fa"
-                      stroke="#80cbc4"
-                      strokeWidth="2"
-                    />
-                    <circle cx="200" cy="200" r="120" fill="#fff" opacity="0.6" />
-                    <g transform="translate(120, 120)">
-                      <path
-                        d="M80,0 C100,30 160,30 160,80 C160,130 100,160 80,200 C60,160 0,130 0,80 C0,30 60,30 80,0"
-                        fill="#26a69a"
-                        opacity="0.8"
-                      />
-                      <circle cx="80" cy="70" r="20" fill="#fff" opacity="0.6" />
-                    </g>
-                    <g transform="translate(150, 80)">
-                      <path d="M0,0 Q50,20 100,0 Q100,50 50,100 Q0,50 0,0" fill="#4db6ac" opacity="0.5" />
-                    </g>
-                    <g transform="translate(80, 180)">
-                      <path d="M0,0 Q30,40 60,0 Q60,30 30,60 Q0,30 0,0" fill="#4db6ac" opacity="0.5" />
-                    </g>
-                    <g transform="translate(220, 180)">
-                      <path d="M0,0 Q20,30 40,0 Q40,20 20,40 Q0,20 0,0" fill="#4db6ac" opacity="0.5" />
-                    </g>
-                    <text x="200" y="200" textAnchor="middle" fill="#004d40" fontFamily="serif" fontSize="24">
-                      UDAY
-                    </text>
-                    <text x="200" y="230" textAnchor="middle" fill="#00695c" fontFamily="serif" fontSize="12">
-                      Waldorf Inspired School
-                    </text>
-                  </svg>
-                </div>
+            <div className="order-1 md:order-2 relative h-80 md:h-auto animate-fadeIn animation-delay-300">
+              <div className="relative h-full rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1527212986666-4d2d47a80d5f"
+                  alt="Child in nature at UDAY Waldorf School"
+                  fill
+                  className="object-cover rounded-2xl transition-transform duration-700 hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-teal-900/30"></div>
+              </div>
+              <div className="absolute -bottom-4 -right-4 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                <div className="font-serif text-teal-800 text-lg">UDAY</div>
+                <div className="text-xs text-teal-700">Waldorf Inspired School</div>
               </div>
             </div>
           </div>

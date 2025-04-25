@@ -52,7 +52,7 @@ export default function Home() {
 
   const scrollToSection = (section: string) => {
     sectionsRef.current[section]?.scrollIntoView({ behavior: "smooth" })
-    setIsMenuOpen(false)
+    setMobileMenuOpen(false)
   }
 
   return (

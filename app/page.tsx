@@ -37,6 +37,9 @@ export default function Home() {
       const position = window.scrollY
       setScrollPosition(position)
 
+      // Set navigation visibility based on scroll position
+      setNavVisible(position > 100)
+
       // Update active section
       const viewPosition = position + window.innerHeight / 3
       Object.entries(sectionsRef.current).forEach(([key, section]) => {

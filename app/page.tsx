@@ -161,50 +161,55 @@ export default function Home() {
       {/* Dawn - Welcome Section */}
       <section
         ref={(el) => (sectionsRef.current.dawn = el)}
-        className="min-h-screen pt-20 flex flex-col justify-center relative overflow-hidden"
+        className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden"
         style={{
-          background: "linear-gradient(to bottom, #e0f7fa 0%, #80cbc4 100%)",
+          background: "linear-gradient(to bottom, #FFF3E0 0%, #FFCC80 100%)",
         }}
       >
-        {/* Background texture removed */}
-        <div className="container mx-auto px-4 py-16 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-            <div className="order-2 md:order-1 text-left animate-fadeIn">
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-stone-800 mb-6 animate-slideUp">Welcome to UDAY</h1>
-              <p className="text-xl md:text-2xl font-serif text-stone-700 mb-6 leading-relaxed animate-slideUp animation-delay-200">
-                Where childhood blossoms naturally
-              </p>
-              <p className="text-lg text-stone-600 mb-8 animate-slideUp animation-delay-300">
-                UDAY, meaning 'sunrise', is Jaipur's first Waldorf-inspired school. We nurture the whole child through
-                joyful learning, artistic expression, and deep connection with nature.
-              </p>
+        {/* Animated sunrise effect */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-30%] left-1/2 transform -translate-x-1/2 w-[150%] h-[150%] rounded-[100%] bg-gradient-to-t from-amber-400/70 via-amber-300/40 to-transparent animate-pulse" style={{animationDuration: '8s'}}></div>
+        </div>
+        
+        {/* Soft clouds */}
+        <div className="absolute top-1/4 left-0 w-[40%] h-24 rounded-full bg-white/20 blur-2xl"></div>
+        <div className="absolute top-1/3 right-10 w-[35%] h-20 rounded-full bg-white/20 blur-2xl"></div>
+        
+        {/* Text overlay with centered content */}
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-stone-800 mb-6 animate-fadeIn leading-tight tracking-wide">
+              Where childhood awakens, naturally.
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl font-sans text-stone-700 mb-12 animate-fadeIn animation-delay-200 max-w-2xl mx-auto">
+              A Waldorf-inspired school in Jaipur nurturing joyful, whole-child learning.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animate-fadeIn animation-delay-300">
               <Button
                 onClick={() => scrollToSection("morning")}
-                className="rounded-full bg-teal-600 hover:bg-teal-700 text-white px-8 py-6 text-lg animate-slideUp animation-delay-400 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="rounded-lg bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-64"
               >
                 Start the Journey <ChevronDown className="ml-2 h-5 w-5" />
               </Button>
-            </div>
-            <div className="order-1 md:order-2 relative h-80 md:h-auto animate-fadeIn animation-delay-300">
-              <div className="relative h-full rounded-2xl overflow-hidden shadow-xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1527212986666-4d2d47a80d5f"
-                  alt="Child in nature at UDAY Waldorf School"
-                  fill
-                  className="object-cover rounded-2xl transition-transform duration-700 hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-teal-900/30"></div>
-              </div>
-              <div className="absolute -bottom-4 -right-4 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-lg">
-                <div className="font-serif text-teal-800 text-lg">UDAY</div>
-                <div className="text-xs text-teal-700">Waldorf Inspired School</div>
-              </div>
+              
+              <Button
+                onClick={() => scrollToSection("sunset")}
+                className="rounded-lg bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-64"
+              >
+                Why Waldorf?
+              </Button>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+        
+        {/* Subtle nature elements */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150" fill="none" preserveAspectRatio="none" className="w-full h-auto">
+            <path d="M0,96L60,85.3C120,75,240,53,360,64C480,75,600,117,720,122.7C840,128,960,96,1080,80C1200,64,1320,64,1380,64L1440,64L1440,150L1380,150C1320,150,1200,150,1080,150C960,150,840,150,720,150C600,150,480,150,360,150C240,150,120,150,60,150L0,150Z" 
+                  fill="#ffffff" fillOpacity="0.8"/>
+          </svg>
+        </div>
       </section>
 
       {/* Morning - Learning Section */}

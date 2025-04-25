@@ -661,98 +661,208 @@ export default function Home() {
         }}
       >
         <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-30 mix-blend-overlay"></div>
+        <svg className="absolute left-0 top-0 h-20 w-full" preserveAspectRatio="none" viewBox="0 0 100 100" style={{color: "#ffecd2"}}>
+          <path d="M 0 0 L 100 0 L 100 5 C 80 15, 70 35, 50 35 C 30 35, 20 15, 0 5 Z" fill="currentColor"></path>
+        </svg>
         <div className="container mx-auto px-4 py-16 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-6">
-              Start Your Child's Journey
-            </h2>
-            <p className="text-xl text-stone-700 mb-12 max-w-2xl mx-auto">
-              Join the UDAY family and give your child the gift of joyful, meaningful education that nurtures their
-              whole being.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-amber-100">
-                <h3 className="text-xl font-serif font-semibold text-stone-800 mb-4 text-center">
-                  Book a Campus Visit
-                </h3>
-                <p className="text-stone-600 mb-6 text-center">
-                  Experience the UDAY difference firsthand. Schedule a tour of our campus.
-                </p>
-                <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white">Schedule a Visit</Button>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-amber-100">
-                <h3 className="text-xl font-serif font-semibold text-stone-800 mb-4 text-center">
-                  Speak to an Educator
-                </h3>
-                <p className="text-stone-600 mb-6 text-center">
-                  Have questions about our approach? Connect with our experienced teachers.
-                </p>
-                <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white">Contact Us</Button>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-amber-100">
-                <h3 className="text-xl font-serif font-semibold text-stone-800 mb-4 text-center">
-                  Apply for Admission
-                </h3>
-                <p className="text-stone-600 mb-6 text-center">
-                  Ready to join? Start the application process for the upcoming session.
-                </p>
-                <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white">Apply Now</Button>
-              </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center animate-fadeIn">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4">
+                Start Your Child's Journey
+              </h2>
+              <p className="text-xl text-stone-700 mb-10 max-w-2xl mx-auto">
+                Join the UDAY family and give your child the gift of joyful, meaningful education that nurtures their
+                whole being.
+              </p>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-amber-100">
-              <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-6 text-center">
-                Why Waldorf Education?
-              </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="flex items-start">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-4 shrink-0">
-                    <span className="text-amber-800 font-bold">1</span>
+            <div className="grid md:grid-cols-2 gap-10 mb-16">
+              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-teal-100 animate-fadeIn animation-delay-200">
+                <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-6">
+                  Begin Your Application
+                </h3>
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="parentName" className="block text-sm font-medium text-stone-700 mb-1">Parent's Name</label>
+                      <input 
+                        type="text" 
+                        id="parentName" 
+                        className="w-full px-4 py-3 bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="childName" className="block text-sm font-medium text-stone-700 mb-1">Child's Name</label>
+                      <input 
+                        type="text" 
+                        id="childName" 
+                        className="w-full px-4 py-3 bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        placeholder="Child's full name"
+                      />
+                    </div>
                   </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-stone-700 mb-1">Email Address</label>
+                      <input 
+                        type="email" 
+                        id="email" 
+                        className="w-full px-4 py-3 bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        placeholder="Your email address"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-stone-700 mb-1">Phone Number</label>
+                      <input 
+                        type="tel" 
+                        id="phone" 
+                        className="w-full px-4 py-3 bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        placeholder="Your phone number"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <h4 className="font-medium text-stone-800 mb-1">Age-Appropriate Learning</h4>
+                    <label htmlFor="childAge" className="block text-sm font-medium text-stone-700 mb-1">Child's Age</label>
+                    <select 
+                      id="childAge" 
+                      className="w-full px-4 py-3 bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    >
+                      <option value="">Select age group</option>
+                      <option value="3-4">3-4 years (Nursery)</option>
+                      <option value="4-5">4-5 years (Kindergarten)</option>
+                      <option value="5-6">5-6 years (Class 1)</option>
+                      <option value="6-7">6-7 years (Class 2)</option>
+                      <option value="7-8">7-8 years (Class 3)</option>
+                      <option value="8-9">8-9 years (Class 4)</option>
+                      <option value="9-10">9-10 years (Class 5)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-stone-700 mb-1">Your Message</label>
+                    <textarea 
+                      id="message" 
+                      rows={4} 
+                      className="w-full px-4 py-3 bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Tell us about your child and what you're looking for in education"
+                    ></textarea>
+                  </div>
+
+                  <div className="flex items-start">
+                    <input 
+                      type="checkbox" 
+                      id="consent" 
+                      className="mt-1 rounded text-teal-600 focus:ring-teal-500 border-stone-300" 
+                    />
+                    <label htmlFor="consent" className="ml-2 text-sm text-stone-600">
+                      I consent to receive information about UDAY Waldorf Inspired School and understand my data will be processed according to the privacy policy.
+                    </label>
+                  </div>
+
+                  <div>
+                    <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg">
+                      Submit Application
+                    </Button>
+                  </div>
+                </form>
+              </div>
+
+              <div className="space-y-6 animate-fadeIn animation-delay-300">
+                <div className="relative rounded-2xl overflow-hidden shadow-xl h-64">
+                  <Image
+                    src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b"
+                    alt="Education symbolism with books and alphabet blocks"
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-teal-900/70 via-teal-900/20 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-2xl font-serif mb-2">Why Choose UDAY?</h3>
+                    <p className="text-white/90">A holistic approach to education that nurtures your child's full potential</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-5 shadow-lg border border-teal-100 transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px]">
+                    <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    </div>
+                    <h4 className="font-medium text-stone-800 mb-1">Book a Visit</h4>
                     <p className="text-sm text-stone-600">
-                      Curriculum meets the developmental needs of each child at every stage.
+                      Tour our campus and experience our unique learning environment.
+                    </p>
+                  </div>
+
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-5 shadow-lg border border-teal-100 transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px]">
+                    <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                      </svg>
+                    </div>
+                    <h4 className="font-medium text-stone-800 mb-1">Ask Questions</h4>
+                    <p className="text-sm text-stone-600">
+                      Schedule a call with our experienced educators.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-4 shrink-0">
-                    <span className="text-amber-800 font-bold">2</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-stone-800 mb-1">Holistic Development</h4>
-                    <p className="text-sm text-stone-600">
-                      Education that nurtures intellectual, emotional, physical, and spiritual growth.
-                    </p>
-                  </div>
-                </div>
+                <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-teal-100">
+                  <h3 className="text-xl font-serif font-semibold text-stone-800 mb-4">
+                    Why Waldorf Education?
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-200 to-amber-300 flex items-center justify-center mr-4 shrink-0 shadow-md">
+                        <span className="text-amber-800 font-bold">1</span>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-stone-800 mb-1">Age-Appropriate Learning</h4>
+                        <p className="text-sm text-stone-600">
+                          Curriculum meets the developmental needs of each child at every stage.
+                        </p>
+                      </div>
+                    </div>
 
-                <div className="flex items-start">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-4 shrink-0">
-                    <span className="text-amber-800 font-bold">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-stone-800 mb-1">Arts Integration</h4>
-                    <p className="text-sm text-stone-600">
-                      Artistic activities are woven into all academic subjects, enhancing learning.
-                    </p>
-                  </div>
-                </div>
+                    <div className="flex items-start">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-200 to-amber-300 flex items-center justify-center mr-4 shrink-0 shadow-md">
+                        <span className="text-amber-800 font-bold">2</span>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-stone-800 mb-1">Holistic Development</h4>
+                        <p className="text-sm text-stone-600">
+                          Education that nurtures intellectual, emotional, physical, and spiritual growth.
+                        </p>
+                      </div>
+                    </div>
 
-                <div className="flex items-start">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-4 shrink-0">
-                    <span className="text-amber-800 font-bold">4</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-stone-800 mb-1">Connection with Nature</h4>
-                    <p className="text-sm text-stone-600">
-                      Regular outdoor experiences foster environmental stewardship and well-being.
-                    </p>
+                    <div className="flex items-start">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-200 to-amber-300 flex items-center justify-center mr-4 shrink-0 shadow-md">
+                        <span className="text-amber-800 font-bold">3</span>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-stone-800 mb-1">Arts Integration</h4>
+                        <p className="text-sm text-stone-600">
+                          Artistic activities are woven into all academic subjects, enhancing learning.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-200 to-amber-300 flex items-center justify-center mr-4 shrink-0 shadow-md">
+                        <span className="text-amber-800 font-bold">4</span>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-stone-800 mb-1">Connection with Nature</h4>
+                        <p className="text-sm text-stone-600">
+                          Regular outdoor experiences foster environmental stewardship and well-being.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

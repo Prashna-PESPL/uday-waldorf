@@ -24,18 +24,26 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3
+      const position = window.scrollY
+      setScrollPosition(position)
 
+      // Update active section
+      const viewPosition = position + window.innerHeight / 3
       Object.entries(sectionsRef.current).forEach(([key, section]) => {
         if (!section) return
 
         const sectionTop = section.offsetTop
         const sectionBottom = sectionTop + section.offsetHeight
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        if (viewPosition >= sectionTop && viewPosition < sectionBottom) {
           setActiveSection(key)
         }
       })
+
+      // Update nav background opacity based on scroll
+      const opacity = Math.min(position / 200, 0.8)
+      setNavBg(`rgba(255, 255, 255, ${opacity})`)
+      setNavBorder(`1px solid rgba(0, 0, 0, ${opacity * 0.1})`)
     }
 
     window.addEventListener("scroll", handleScroll)

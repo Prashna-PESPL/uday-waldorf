@@ -238,15 +238,15 @@ export default function Home() {
         
         {/* Text overlay with centered content */}
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-stone-800 mb-6 animate-fadeIn leading-tight tracking-wide">
+          <div className="max-w-3xl mx-auto bg-white/40 backdrop-blur-sm p-8 rounded-xl shadow-lg animate-fadeIn">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-amber-900 mb-6 leading-tight tracking-wide shadow-text">
               Where childhood awakens, naturally.
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl font-sans text-stone-700 mb-12 animate-fadeIn animation-delay-200 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl font-sans text-stone-800 mb-12 animation-delay-200 max-w-2xl mx-auto">
               A Waldorf-inspired school in Jaipur nurturing joyful, whole-child learning.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animate-fadeIn animation-delay-300">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animation-delay-300">
               <Button
                 onClick={() => scrollToSection("morning")}
                 className="rounded-lg bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-64"

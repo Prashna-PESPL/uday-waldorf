@@ -48,14 +48,15 @@ export default function Home() {
           setActiveSection(key)
         }
       })
-
+      
       // Update nav background opacity based on scroll
-      const opacity = Math.min(position / 200, 0.8)
+      const opacity = Math.min(position / 200, 0.95)
       setNavBg(`rgba(255, 255, 255, ${opacity})`)
       setNavBorder(`1px solid rgba(0, 0, 0, ${opacity * 0.1})`)
     }
 
     window.addEventListener("scroll", handleScroll)
+    handleScroll() // Call once to initialize
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 

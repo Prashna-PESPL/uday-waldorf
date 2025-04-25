@@ -406,20 +406,26 @@ export default function Home() {
       {/* Afternoon - Community Section */}
       <section ref={(el) => (sectionsRef.current.afternoon = el)} className="min-h-screen py-20 bg-white relative">
         <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-10"></div>
+        <svg className="absolute left-0 top-0 h-20 w-full" preserveAspectRatio="none" viewBox="0 0 100 100" style={{color: "#e6f7ff"}}>
+          <path d="M 0 0 L 100 0 L 100 5 C 80 15, 70 35, 50 35 C 30 35, 20 15, 0 5 Z" fill="currentColor"></path>
+        </svg>
         <div className="container mx-auto px-4 py-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-12 text-center">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
             Community and Care
           </h2>
+          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+            At UDAY, families, teachers, and children form a supportive village centered around holistic education.
+          </p>
 
           <div className="max-w-4xl mx-auto mb-16">
-            <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl mb-8">
+            <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl mb-8 animate-fadeIn animation-delay-200">
               <Image
-                src="/placeholder.svg?height=800&width=1600"
-                alt="Community gathering"
+                src="https://images.unsplash.com/photo-1594739393338-52c769b25328"
+                alt="Parent and child cycling through a park"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-1000 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
                 <div className="p-8">
                   <p className="text-white text-xl md:text-2xl font-serif italic">
                     "The community is our classroom, where parents and teachers work together to nurture each child's
@@ -431,57 +437,88 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-amber-50 rounded-xl p-5 shadow-md">
-                <h3 className="text-lg font-serif font-semibold text-stone-800 mb-3">Parent Involvement</h3>
-                <p className="text-stone-600 text-sm">
+              <div className="bg-amber-50 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px] animate-fadeIn animation-delay-300">
+                <div className="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center mb-4 mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-serif font-semibold text-stone-800 mb-3 text-center">Parent Involvement</h3>
+                <p className="text-stone-600 text-center">
                   Parents actively participate in festivals, craft days, and community events, creating a village-like
                   atmosphere.
                 </p>
               </div>
 
-              <div className="bg-amber-50 rounded-xl p-5 shadow-md">
-                <h3 className="text-lg font-serif font-semibold text-stone-800 mb-3">Seasonal Celebrations</h3>
-                <p className="text-stone-600 text-sm">
+              <div className="bg-amber-50 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px] animate-fadeIn animation-delay-400">
+                <div className="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center mb-4 mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-serif font-semibold text-stone-800 mb-3 text-center">Seasonal Celebrations</h3>
+                <p className="text-stone-600 text-center">
                   We honor the rhythm of the year through festivals that connect children to cultural traditions and
                   natural cycles.
                 </p>
               </div>
 
-              <div className="bg-amber-50 rounded-xl p-5 shadow-md">
-                <h3 className="text-lg font-serif font-semibold text-stone-800 mb-3">Wholesome Meals</h3>
-                <p className="text-stone-600 text-sm">
+              <div className="bg-amber-50 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px] animate-fadeIn animation-delay-500">
+                <div className="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center mb-4 mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-serif font-semibold text-stone-800 mb-3 text-center">Wholesome Meals</h3>
+                <p className="text-stone-600 text-center">
                   Children help prepare nutritious, organic meals, learning about food, cooperation, and gratitude.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto animate-fadeIn animation-delay-500">
             <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-6 text-center">What Parents Say</h3>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl p-6 shadow-md border border-amber-100">
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px]">
+                <svg className="h-8 w-8 text-amber-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                </svg>
                 <p className="text-stone-600 italic mb-4">
                   "I've never seen my child so joyful and engaged in learning. At UDAY, education isn't something that
                   happens to them—it's something they actively participate in with their whole being."
                 </p>
-                <p className="text-stone-800 font-medium">— Parent of a 7-year-old</p>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                    <span className="text-amber-800 font-serif">S</span>
+                  </div>
+                  <p className="text-stone-800 font-medium">Shikha, parent of a 7-year-old</p>
+                </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-md border border-amber-100">
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px]">
+                <svg className="h-8 w-8 text-amber-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                </svg>
                 <p className="text-stone-600 italic mb-4">
                   "The difference in my child's confidence, creativity, and love for learning is remarkable. UDAY
                   doesn't just teach subjects—it nurtures the whole child."
                 </p>
-                <p className="text-stone-800 font-medium">— Parent of a 5-year-old</p>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                    <span className="text-amber-800 font-serif">R</span>
+                  </div>
+                  <p className="text-stone-800 font-medium">Rahul, parent of a 5-year-old</p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-12 animate-fadeIn animation-delay-600">
             <Button
               onClick={() => scrollToSection("sunset")}
-              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white"
+              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Discover Our Story <ChevronDown className="ml-2 h-4 w-4" />
             </Button>

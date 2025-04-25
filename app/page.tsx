@@ -435,46 +435,105 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-amber-100 animate-fadeIn animation-delay-400">
+          <div className="max-w-5xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-amber-100 animate-fadeIn animation-delay-400">
             <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-6 text-center">Our Daily Rhythm</h3>
-            <div className="space-y-6">
-              <div className="flex items-center p-4 rounded-xl bg-amber-50/80 shadow-sm transform transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
-                <div className="w-16 h-16 rounded-full bg-amber-200 flex items-center justify-center mr-4 shadow-md">
-                  <span className="text-amber-800 font-serif font-medium">8:30</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-800 text-lg">Morning Circle</h4>
+            
+            {/* Scroll navigation tabs */}
+            <div className="flex justify-center mb-6 space-x-2 sm:space-x-4">
+              <button 
+                className="px-4 py-2 rounded-lg bg-amber-200 text-amber-800 font-medium shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-amber-300" 
+                onClick={() => document.getElementById('rhythm-8-30')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })}
+              >
+                8:30
+              </button>
+              <button 
+                className="px-4 py-2 rounded-lg bg-emerald-200 text-emerald-800 font-medium shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-emerald-300" 
+                onClick={() => document.getElementById('rhythm-10-00')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })}
+              >
+                10:00
+              </button>
+              <button 
+                className="px-4 py-2 rounded-lg bg-sky-200 text-sky-800 font-medium shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-sky-300" 
+                onClick={() => document.getElementById('rhythm-11-30')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })}
+              >
+                11:30
+              </button>
+              <button 
+                className="px-4 py-2 rounded-lg bg-orange-200 text-orange-800 font-medium shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-orange-300" 
+                onClick={() => document.getElementById('rhythm-12-30')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })}
+              >
+                12:30
+              </button>
+            </div>
+            
+            {/* Scroll indicators */}
+            <div className="flex justify-center mb-2">
+              <div className="flex space-x-2">
+                <span className="text-amber-800">← Scroll →</span>
+              </div>
+            </div>
+            
+            {/* Horizontal scrollable container */}
+            <div className="overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+              <div className="flex space-x-6 min-w-max px-2">
+                <div id="rhythm-8-30" className="flex-shrink-0 w-80 snap-center flex flex-col p-5 rounded-xl bg-amber-50/80 shadow-md transform transition-all duration-300 hover:shadow-xl">
+                  <div className="flex items-center mb-4">
+                    <div className="w-16 h-16 rounded-full bg-amber-200 flex items-center justify-center mr-4 shadow-md">
+                      <span className="text-amber-800 font-serif font-medium">8:30</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-stone-800 text-lg">Morning Circle</h4>
+                    </div>
+                  </div>
                   <p className="text-stone-600">Songs, movement, and greetings to start the day</p>
+                  <div className="mt-4 text-sm italic text-stone-500 bg-white/70 p-3 rounded-lg">
+                    Children gather in a circle to sing seasonal songs, practice verses, and share greetings in different languages.
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center p-4 rounded-xl bg-emerald-50/80 shadow-sm transform transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
-                <div className="w-16 h-16 rounded-full bg-emerald-200 flex items-center justify-center mr-4 shadow-md">
-                  <span className="text-emerald-800 font-serif font-medium">10:00</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-800 text-lg">Main Lesson</h4>
+                <div id="rhythm-10-00" className="flex-shrink-0 w-80 snap-center flex flex-col p-5 rounded-xl bg-emerald-50/80 shadow-md transform transition-all duration-300 hover:shadow-xl">
+                  <div className="flex items-center mb-4">
+                    <div className="w-16 h-16 rounded-full bg-emerald-200 flex items-center justify-center mr-4 shadow-md">
+                      <span className="text-emerald-800 font-serif font-medium">10:00</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-stone-800 text-lg">Main Lesson</h4>
+                    </div>
+                  </div>
                   <p className="text-stone-600">Integrated learning through stories, art, and movement</p>
+                  <div className="mt-4 text-sm italic text-stone-500 bg-white/70 p-3 rounded-lg">
+                    Academic subjects come alive through storytelling, painting, drawing, and hands-on activities that engage multiple senses.
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center p-4 rounded-xl bg-sky-50/80 shadow-sm transform transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
-                <div className="w-16 h-16 rounded-full bg-sky-200 flex items-center justify-center mr-4 shadow-md">
-                  <span className="text-sky-800 font-serif font-medium">11:30</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-800 text-lg">Outdoor Play</h4>
+                <div id="rhythm-11-30" className="flex-shrink-0 w-80 snap-center flex flex-col p-5 rounded-xl bg-sky-50/80 shadow-md transform transition-all duration-300 hover:shadow-xl">
+                  <div className="flex items-center mb-4">
+                    <div className="w-16 h-16 rounded-full bg-sky-200 flex items-center justify-center mr-4 shadow-md">
+                      <span className="text-sky-800 font-serif font-medium">11:30</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-stone-800 text-lg">Outdoor Play</h4>
+                    </div>
+                  </div>
                   <p className="text-stone-600">Free play in nature, gardening, and exploration</p>
+                  <div className="mt-4 text-sm italic text-stone-500 bg-white/70 p-3 rounded-lg">
+                    Children develop physical strength, creativity, and social skills through unstructured outdoor time in our natural play spaces.
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center p-4 rounded-xl bg-orange-50/80 shadow-sm transform transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
-                <div className="w-16 h-16 rounded-full bg-orange-200 flex items-center justify-center mr-4 shadow-md">
-                  <span className="text-orange-800 font-serif font-medium">12:30</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-800 text-lg">Lunch & Rest</h4>
+                <div id="rhythm-12-30" className="flex-shrink-0 w-80 snap-center flex flex-col p-5 rounded-xl bg-orange-50/80 shadow-md transform transition-all duration-300 hover:shadow-xl">
+                  <div className="flex items-center mb-4">
+                    <div className="w-16 h-16 rounded-full bg-orange-200 flex items-center justify-center mr-4 shadow-md">
+                      <span className="text-orange-800 font-serif font-medium">12:30</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-stone-800 text-lg">Lunch & Rest</h4>
+                    </div>
+                  </div>
                   <p className="text-stone-600">Nutritious meal followed by quiet time</p>
+                  <div className="mt-4 text-sm italic text-stone-500 bg-white/70 p-3 rounded-lg">
+                    Children help prepare wholesome meals, practice gratitude, and enjoy a peaceful rest time with soft music and storytelling.
+                  </div>
                 </div>
               </div>
             </div>

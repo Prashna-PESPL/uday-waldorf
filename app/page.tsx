@@ -405,7 +405,7 @@ export default function Home() {
 
       {/* Afternoon - Community Section */}
       <section ref={(el) => (sectionsRef.current.afternoon = el)} className="min-h-screen py-20 bg-white relative">
-        <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-10"></div>
+        {/* Background texture removed */}
         <svg className="absolute left-0 top-0 h-20 w-full" preserveAspectRatio="none" viewBox="0 0 100 100" style={{color: "#e6f7ff"}}>
           <path d="M 0 0 L 100 0 L 100 5 C 80 15, 70 35, 50 35 C 30 35, 20 15, 0 5 Z" fill="currentColor"></path>
         </svg>

@@ -231,8 +231,30 @@ export default function Home() {
               <circle cx="3" cy="-3" r="3" fill="#ffce79" />
             </g>
             
+            {/* Children silhouettes */}
+            <g transform="translate(330, 620)">
+              <circle cx="15" cy="15" r="15" fill="#8b6e4e" /> {/* head */}
+              <path d="M15,30 L15,70 M0,45 L30,45 M5,80 L15,70 L25,80" stroke="#8b6e4e" strokeWidth="8" strokeLinecap="round" />
+            </g>
+            <g transform="translate(600, 630)">
+              <circle cx="12" cy="12" r="12" fill="#8b6e4e" /> {/* head */}
+              <path d="M12,24 L12,60 M0,40 L24,40 M4,70 L12,60 L20,70" stroke="#8b6e4e" strokeWidth="7" strokeLinecap="round" />
+            </g>
+            
+            {/* Paintbrush */}
+            <g transform="translate(380, 600) rotate(30)">
+              <rect x="0" y="0" width="50" height="10" rx="2" fill="#e49b5f" />
+              <rect x="-15" y="0" width="15" height="10" fill="#ff5555" />
+            </g>
+            
             {/* Grass */}
             <path d="M0,670 C200,650 300,680 500,670 C700,660 800,680 1000,670 L1000,800 L0,800 Z" fill="#9ed36a" />
+            
+            {/* Grass tufts */}
+            <path d="M100,670 C110,640 120,670 130,640 C140,670 150,640 160,670" fill="none" stroke="#85b665" strokeWidth="3" />
+            <path d="M400,670 C410,645 420,670 430,645 C440,670 450,645 460,670" fill="none" stroke="#85b665" strokeWidth="3" />
+            <path d="M700,670 C710,640 720,670 730,640 C740,670 750,640 760,670" fill="none" stroke="#85b665" strokeWidth="3" />
+            <path d="M900,670 C910,650 920,670 930,650 C940,670 950,650 960,670" fill="none" stroke="#85b665" strokeWidth="3" />
           </svg>
         </div>
         

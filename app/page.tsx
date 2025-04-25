@@ -211,71 +211,77 @@ export default function Home() {
       <section ref={(el) => (sectionsRef.current.morning = el)} className="min-h-screen py-20 bg-white relative">
         <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-10"></div>
         <div className="container mx-auto px-4 py-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-12 text-center">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
             The Joy of Discovery
           </h2>
+          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+            At UDAY, learning happens through exploration, creativity, and connection with the natural world.
+          </p>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-amber-50 rounded-2xl p-6 shadow-md transform transition-transform hover:scale-105">
-              <div className="h-48 mb-4 rounded-xl overflow-hidden relative">
+            <div className="bg-amber-50 rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fadeIn animation-delay-200">
+              <div className="h-48 mb-4 rounded-xl overflow-hidden relative group">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Children painting"
+                  src="https://images.unsplash.com/photo-1613950190144-4f2a84c75e8c"
+                  alt="Children creating rainbow craft with paper hearts"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <h3 className="text-xl font-serif font-semibold text-stone-800 mb-2">Painting Emotions</h3>
               <p className="text-stone-600">
                 Children express their inner world through watercolors, developing emotional intelligence alongside
                 creativity.
               </p>
-              <div className="mt-4 p-3 bg-white rounded-lg italic text-stone-500 text-sm">
+              <div className="mt-4 p-3 bg-white rounded-lg italic text-stone-500 text-sm shadow-sm">
                 "When I paint, I can show how I feel without words." — Uday Student, Age 6
               </div>
             </div>
 
-            <div className="bg-amber-50 rounded-2xl p-6 shadow-md transform transition-transform hover:scale-105">
-              <div className="h-48 mb-4 rounded-xl overflow-hidden relative">
+            <div className="bg-amber-50 rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fadeIn animation-delay-300">
+              <div className="h-48 mb-4 rounded-xl overflow-hidden relative group">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Storytelling with puppets"
+                  src="https://images.unsplash.com/photo-1605627079912-97c3810a11a4"
+                  alt="Child holding colorful paper for crafting"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <h3 className="text-xl font-serif font-semibold text-stone-800 mb-2">Storytelling Magic</h3>
               <p className="text-stone-600">
                 Through puppetry and oral storytelling, children develop language skills and imagination simultaneously.
               </p>
-              <div className="mt-4 p-3 bg-white rounded-lg italic text-stone-500 text-sm">
+              <div className="mt-4 p-3 bg-white rounded-lg italic text-stone-500 text-sm shadow-sm">
                 "Stories help us understand the world and ourselves." — Uday Teacher
               </div>
             </div>
 
-            <div className="bg-amber-50 rounded-2xl p-6 shadow-md transform transition-transform hover:scale-105">
-              <div className="h-48 mb-4 rounded-xl overflow-hidden relative">
+            <div className="bg-amber-50 rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fadeIn animation-delay-400">
+              <div className="h-48 mb-4 rounded-xl overflow-hidden relative group">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Nature-based learning"
+                  src="https://images.unsplash.com/photo-1511448962213-2f9bc14ed197"
+                  alt="Children exploring in a forest"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <h3 className="text-xl font-serif font-semibold text-stone-800 mb-2">Nature's Mathematics</h3>
               <p className="text-stone-600">
                 Children discover mathematical concepts through natural patterns, rhythms, and hands-on exploration.
               </p>
-              <div className="mt-4 p-3 bg-white rounded-lg italic text-stone-500 text-sm">
+              <div className="mt-4 p-3 bg-white rounded-lg italic text-stone-500 text-sm shadow-sm">
                 "I found Fibonacci spirals in the sunflower!" — Uday Student, Age 8
               </div>
             </div>
           </div>
 
-          <div className="text-center">
+          <div className="text-center animate-fadeIn animation-delay-500">
             <Button
               onClick={() => scrollToSection("midday")}
-              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white"
+              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Discover Our Rhythm <ChevronDown className="ml-2 h-4 w-4" />
             </Button>

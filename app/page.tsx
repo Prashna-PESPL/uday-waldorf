@@ -47,115 +47,71 @@ export default function Home() {
   return (
     <div className="relative">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center">
-            <Image src="/images/logo.png" alt="UDAY Waldorf Inspired School" width={60} height={60} className="mr-2" />
-            <span className="hidden md:inline-block text-xl font-serif text-stone-800">
-              UDAY Waldorf Inspired School
-            </span>
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollPosition > 50 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        style={{
+          backgroundColor: navBg,
+          borderBottom: navBorder,
+        }}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            <div className="text-xl font-serif font-bold text-stone-800 flex items-center">
+              <span className="text-teal-600 mr-2">
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M12,2L1,21H23L12,2M12,6L19.5,18H4.5L12,6Z" />
+                </svg>
+              </span>
+              UDAY
+            </div>
+
+            <div className="hidden md:flex space-x-8">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  className={`text-sm font-medium ${
+                    activeSection === section.id ? "text-teal-600" : "text-stone-600 hover:text-stone-800"
+                  } transition-colors duration-300`}
+                >
+                  {section.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="md:hidden">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-stone-600 hover:text-stone-800 focus:outline-none"
+              >
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                </svg>
+              </button>
+            </div>
           </div>
 
-          <div className="hidden md:flex space-x-6 items-center">
-            <button
-              onClick={() => scrollToSection("dawn")}
-              className={cn(
-                "text-sm font-medium transition-colors",
-                activeSection === "dawn" ? "text-teal-600" : "text-stone-600 hover:text-teal-600",
-              )}
-            >
-              Welcome
-            </button>
-            <button
-              onClick={() => scrollToSection("morning")}
-              className={cn(
-                "text-sm font-medium transition-colors",
-                activeSection === "morning" ? "text-teal-600" : "text-stone-600 hover:text-teal-600",
-              )}
-            >
-              Learning
-            </button>
-            <button
-              onClick={() => scrollToSection("midday")}
-              className={cn(
-                "text-sm font-medium transition-colors",
-                activeSection === "midday" ? "text-teal-600" : "text-stone-600 hover:text-teal-600",
-              )}
-            >
-              Rhythm
-            </button>
-            <button
-              onClick={() => scrollToSection("afternoon")}
-              className={cn(
-                "text-sm font-medium transition-colors",
-                activeSection === "afternoon" ? "text-teal-600" : "text-stone-600 hover:text-teal-600",
-              )}
-            >
-              Community
-            </button>
-            <button
-              onClick={() => scrollToSection("sunset")}
-              className={cn(
-                "text-sm font-medium transition-colors",
-                activeSection === "sunset" ? "text-teal-600" : "text-stone-600 hover:text-teal-600",
-              )}
-            >
-              Our Story
-            </button>
-            <Button
-              onClick={() => scrollToSection("cta")}
-              className="bg-teal-600 hover:bg-teal-700 text-white rounded-full"
-            >
-              Admissions
-            </Button>
-          </div>
-
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
+          {mobileMenuOpen && (
+            <div className="md:hidden py-4">
+              <div className="flex flex-col space-y-3 pb-3">
+                {sections.map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => {
+                      scrollToSection(section.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`text-sm font-medium ${
+                      activeSection === section.id ? "text-teal-600" : "text-stone-600 hover:text-stone-800"
+                    } transition-colors duration-300`}
+                  >
+                    {section.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg p-4 space-y-3">
-            <button
-              onClick={() => scrollToSection("dawn")}
-              className="block w-full text-left px-4 py-2 text-stone-800 hover:bg-teal-50 rounded-md"
-            >
-              Welcome
-            </button>
-            <button
-              onClick={() => scrollToSection("morning")}
-              className="block w-full text-left px-4 py-2 text-stone-800 hover:bg-teal-50 rounded-md"
-            >
-              Learning
-            </button>
-            <button
-              onClick={() => scrollToSection("midday")}
-              className="block w-full text-left px-4 py-2 text-stone-800 hover:bg-teal-50 rounded-md"
-            >
-              Rhythm
-            </button>
-            <button
-              onClick={() => scrollToSection("afternoon")}
-              className="block w-full text-left px-4 py-2 text-stone-800 hover:bg-teal-50 rounded-md"
-            >
-              Community
-            </button>
-            <button
-              onClick={() => scrollToSection("sunset")}
-              className="block w-full text-left px-4 py-2 text-stone-800 hover:bg-teal-50 rounded-md"
-            >
-              Our Story
-            </button>
-            <Button
-              onClick={() => scrollToSection("cta")}
-              className="w-full bg-teal-600 hover:bg-teal-700 text-white rounded-full"
-            >
-              Admissions
-            </Button>
-          </div>
-        )}
       </nav>
 
       {/* Dawn - Welcome Section */}

@@ -69,7 +69,7 @@ export default function Home() {
     <div className="relative">
       {/* Navigation */}
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollPosition > 50 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollPosition > 50 ? 'opacity-100 translate-y-0' : 'opacity-0 pointer-events-none -translate-y-5'}`}
         style={{
           backgroundColor: navBg,
           borderBottom: navBorder,
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             <div className="text-xl font-serif font-bold text-stone-800 flex items-center">
-              <span className="text-teal-600 mr-2">
+              <span className="text-amber-600 mr-2">
                 <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
                   <path d="M12,2L1,21H23L12,2M12,6L19.5,18H4.5L12,6Z" />
                 </svg>
@@ -92,7 +92,7 @@ export default function Home() {
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
                   className={`text-sm font-medium ${
-                    activeSection === section.id ? "text-teal-600" : "text-stone-600 hover:text-stone-800"
+                    activeSection === section.id ? "text-amber-600" : "text-stone-600 hover:text-stone-800"
                   } transition-colors duration-300`}
                 >
                   {section.label}
@@ -104,16 +104,23 @@ export default function Home() {
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="text-stone-600 hover:text-stone-800 focus:outline-none"
+                aria-label="Open mobile menu"
               >
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
-                </svg>
+                {mobileMenuOpen ? (
+                  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                    <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                    <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
 
           {mobileMenuOpen && (
-            <div className="md:hidden py-4">
+            <div className="md:hidden py-4 bg-white rounded-b-lg shadow-lg animate-fadeIn">
               <div className="flex flex-col space-y-3 pb-3">
                 {sections.map((section) => (
                   <button
@@ -122,9 +129,11 @@ export default function Home() {
                       scrollToSection(section.id);
                       setMobileMenuOpen(false);
                     }}
-                    className={`text-sm font-medium ${
-                      activeSection === section.id ? "text-teal-600" : "text-stone-600 hover:text-stone-800"
-                    } transition-colors duration-300`}
+                    className={`text-sm font-medium px-4 py-2 ${
+                      activeSection === section.id 
+                        ? "text-amber-600 bg-amber-50" 
+                        : "text-stone-600 hover:text-stone-800 hover:bg-stone-50"
+                    } transition-all duration-300 rounded-md`}
                   >
                     {section.label}
                   </button>

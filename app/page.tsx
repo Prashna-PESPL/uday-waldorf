@@ -22,6 +22,7 @@ export default function Home() {
   const [scrollPosition, setScrollPosition] = useState(0)
   const [navBg, setNavBg] = useState("rgba(255, 255, 255, 0.8)")
   const [navBorder, setNavBorder] = useState("1px solid rgba(0, 0, 0, 0.1)")
+  const [navVisible, setNavVisible] = useState(false)
   const sectionsRef = useRef<{ [key: string]: HTMLDivElement | null }>({
     dawn: null,
     morning: null,

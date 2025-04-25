@@ -535,12 +535,20 @@ export default function Home() {
         }}
       >
         <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-20"></div>
+        <svg className="absolute left-0 top-0 h-20 w-full text-white" preserveAspectRatio="none" viewBox="0 0 100 100">
+          <path d="M 0 0 L 100 0 L 100 5 C 80 15, 70 35, 50 35 C 30 35, 20 15, 0 5 Z" fill="currentColor"></path>
+        </svg>
         <div className="container mx-auto px-4 py-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-12 text-center">The UDAY Story</h2>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
+            The UDAY Story
+          </h2>
+          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+            Our journey began with a simple wish - to create an education that nurtures the whole child.
+          </p>
 
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
-              <div>
+              <div className="animate-fadeIn animation-delay-200">
                 <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-4">A Mother's Vision</h3>
                 <p className="text-stone-600 mb-4">
                   UDAY was founded because a mother, Gurpreet, wanted to give more meaningful and holistic education to
@@ -558,72 +566,85 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="rounded-2xl overflow-hidden shadow-lg">
+              <div className="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:shadow-2xl animate-fadeIn animation-delay-300">
                 <div className="h-80 relative">
                   <Image
-                    src="/placeholder.svg?height=800&width=600"
-                    alt="Founder Gurpreet"
+                    src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6"
+                    alt="Child reading at sunset symbolizing UDAY's vision"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                    <h4 className="text-xl font-serif">The Vision</h4>
+                    <p className="text-sm text-white/90">A holistic education that honors childhood</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="relative py-12">
-              <div className="absolute left-0 right-0 h-1 bg-amber-200 top-1/2 transform -translate-y-1/2"></div>
+            <div className="relative py-12 animate-fadeIn animation-delay-400">
+              <div className="absolute left-0 right-0 h-1 bg-gradient-to-r from-amber-100 via-amber-300 to-amber-100 top-1/2 transform -translate-y-1/2"></div>
 
               <div className="grid grid-cols-3 md:grid-cols-5 gap-4 relative z-10">
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-amber-500 mx-auto flex items-center justify-center mb-2 shadow-md">
+                <div className="text-center transform transition-transform duration-500 hover:scale-110">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 mx-auto flex items-center justify-center mb-3 shadow-lg">
                     <span className="text-white font-bold">2014</span>
                   </div>
-                  <p className="text-sm text-stone-600">Founded with 4 children</p>
+                  <p className="text-sm text-stone-700 font-medium">Founded with 4 children</p>
                 </div>
 
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-amber-500 mx-auto flex items-center justify-center mb-2 shadow-md">
+                <div className="text-center transform transition-transform duration-500 hover:scale-110">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 mx-auto flex items-center justify-center mb-3 shadow-lg">
                     <span className="text-white font-bold">2016</span>
                   </div>
-                  <p className="text-sm text-stone-600">First grade class</p>
+                  <p className="text-sm text-stone-700 font-medium">First grade class</p>
                 </div>
 
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-amber-500 mx-auto flex items-center justify-center mb-2 shadow-md">
+                <div className="text-center transform transition-transform duration-500 hover:scale-110">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 mx-auto flex items-center justify-center mb-3 shadow-lg">
                     <span className="text-white font-bold">2018</span>
                   </div>
-                  <p className="text-sm text-stone-600">New campus</p>
+                  <p className="text-sm text-stone-700 font-medium">New campus</p>
                 </div>
 
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-amber-500 mx-auto flex items-center justify-center mb-2 shadow-md">
+                <div className="text-center transform transition-transform duration-500 hover:scale-110">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 mx-auto flex items-center justify-center mb-3 shadow-lg">
                     <span className="text-white font-bold">2021</span>
                   </div>
-                  <p className="text-sm text-stone-600">Expanded to Grade 5</p>
+                  <p className="text-sm text-stone-700 font-medium">Expanded to Grade 5</p>
                 </div>
 
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-amber-500 mx-auto flex items-center justify-center mb-2 shadow-md">
+                <div className="text-center transform transition-transform duration-500 hover:scale-110">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 mx-auto flex items-center justify-center mb-3 shadow-lg">
                     <span className="text-white font-bold">2025</span>
                   </div>
-                  <p className="text-sm text-stone-600">Growing each year</p>
+                  <p className="text-sm text-stone-700 font-medium">Growing each year</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-amber-100 mt-8">
-              <p className="text-xl text-stone-700 italic text-center">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-amber-100 mt-8 animate-fadeIn animation-delay-500 transform transition-all duration-500 hover:shadow-2xl">
+              <svg className="h-10 w-10 text-amber-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+              </svg>
+              <p className="text-xl text-stone-700 italic text-center leading-relaxed">
                 "I didn't build a school. I built what I wished existed for my own child—a place where education
                 nurtures the head, heart, and hands in harmony."
               </p>
-              <p className="text-stone-800 font-medium text-center mt-4">— Gurpreet, Founder</p>
+              <div className="flex items-center justify-center mt-6">
+                <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mr-3 shadow-md">
+                  <span className="text-amber-800 font-serif font-semibold">G</span>
+                </div>
+                <p className="text-stone-800 font-medium">Gurpreet, Founder of UDAY</p>
+              </div>
             </div>
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-12 animate-fadeIn animation-delay-600">
             <Button
               onClick={() => scrollToSection("cta")}
-              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white"
+              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Join Our Community <ChevronDown className="ml-2 h-4 w-4" />
             </Button>

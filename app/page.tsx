@@ -153,18 +153,88 @@ export default function Home() {
       <section
         ref={(el) => (sectionsRef.current.dawn = el)}
         className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden"
-        style={{
-          background: "linear-gradient(to bottom, #FFF3E0 0%, #FFCC80 100%)",
-        }}
       >
-        {/* Animated sunrise effect */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-30%] left-1/2 transform -translate-x-1/2 w-[150%] h-[150%] rounded-[100%] bg-gradient-to-t from-amber-400/70 via-amber-300/40 to-transparent animate-pulse" style={{animationDuration: '8s'}}></div>
+        {/* Waldorf-inspired artistic background */}
+        <div className="absolute inset-0 overflow-hidden z-0">
+          <svg 
+            className="w-full h-full"
+            viewBox="0 0 1000 800"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            {/* Sky gradient */}
+            <defs>
+              <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#ffebc2" />
+                <stop offset="100%" stopColor="#fed290" />
+              </linearGradient>
+              <radialGradient id="sun" cx="50%" cy="30%" r="30%" fx="50%" fy="30%">
+                <stop offset="0%" stopColor="#ffda8a" />
+                <stop offset="70%" stopColor="#f9b954" />
+                <stop offset="100%" stopColor="#f9b954" stopOpacity="0" />
+              </radialGradient>
+              <linearGradient id="rainbow1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#ff7878" />
+                <stop offset="100%" stopColor="#ff9a78" />
+              </linearGradient>
+              <linearGradient id="rainbow2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#ffce79" />
+                <stop offset="100%" stopColor="#fddd7e" />
+              </linearGradient>
+              <linearGradient id="rainbow3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#beffa8" />
+                <stop offset="100%" stopColor="#85e37d" />
+              </linearGradient>
+              <linearGradient id="rainbow4" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#90d2ff" />
+                <stop offset="100%" stopColor="#73c2ff" />
+              </linearGradient>
+              <linearGradient id="rainbow5" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#d3a4ff" />
+                <stop offset="100%" stopColor="#bb8dff" />
+              </linearGradient>
+            </defs>
+            
+            {/* Background */}
+            <rect width="100%" height="100%" fill="url(#sky)" />
+            
+            {/* Sun */}
+            <circle cx="50%" cy="30%" r="20%" fill="url(#sun)" className="animate-pulse" style={{animationDuration: '8s'}} />
+            
+            {/* Rainbow */}
+            <path d="M250,500 C250,650 750,650 750,500" fill="none" stroke="url(#rainbow1)" strokeWidth="20" strokeLinecap="round" opacity="0.9" />
+            <path d="M280,520 C280,650 720,650 720,520" fill="none" stroke="url(#rainbow2)" strokeWidth="20" strokeLinecap="round" opacity="0.9" />
+            <path d="M310,540 C310,650 690,650 690,540" fill="none" stroke="url(#rainbow3)" strokeWidth="20" strokeLinecap="round" opacity="0.9" />
+            <path d="M340,560 C340,650 660,650 660,560" fill="none" stroke="url(#rainbow4)" strokeWidth="20" strokeLinecap="round" opacity="0.9" />
+            <path d="M370,580 C370,650 630,650 630,580" fill="none" stroke="url(#rainbow5)" strokeWidth="20" strokeLinecap="round" opacity="0.9" />
+            
+            {/* Trees */}
+            <g transform="translate(150, 550)">
+              <path d="M0,0 L0,-120 C10,-140 40,-140 50,-120 C60,-140 90,-140 100,-120 L100,0 Z" fill="#85b665" />
+              <rect x="40" y="0" width="20" height="50" fill="#8b6e4e" />
+            </g>
+            <g transform="translate(750, 570)">
+              <path d="M0,0 L0,-100 C10,-120 40,-120 50,-100 C60,-120 90,-120 100,-100 L100,0 Z" fill="#78a457" />
+              <rect x="40" y="0" width="20" height="40" fill="#8b6e4e" />
+            </g>
+            
+            {/* Flowers */}
+            <g transform="translate(250, 650)">
+              <circle cx="0" cy="0" r="15" fill="#ff9a9a" />
+              <circle cx="5" cy="-5" r="5" fill="#ffce79" />
+            </g>
+            <g transform="translate(650, 670)">
+              <circle cx="0" cy="0" r="12" fill="#ffb6d9" />
+              <circle cx="4" cy="-4" r="4" fill="#ffce79" />
+            </g>
+            <g transform="translate(450, 680)">
+              <circle cx="0" cy="0" r="10" fill="#a4c2ff" />
+              <circle cx="3" cy="-3" r="3" fill="#ffce79" />
+            </g>
+            
+            {/* Grass */}
+            <path d="M0,670 C200,650 300,680 500,670 C700,660 800,680 1000,670 L1000,800 L0,800 Z" fill="#9ed36a" />
+          </svg>
         </div>
-        
-        {/* Soft clouds */}
-        <div className="absolute top-1/4 left-0 w-[40%] h-24 rounded-full bg-white/20 blur-2xl"></div>
-        <div className="absolute top-1/3 right-10 w-[35%] h-20 rounded-full bg-white/20 blur-2xl"></div>
         
         {/* Text overlay with centered content */}
         <div className="container mx-auto px-4 relative z-10 text-center">

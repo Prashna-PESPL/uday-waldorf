@@ -166,7 +166,7 @@ export default function Home() {
           background: "linear-gradient(to bottom, #e0f7fa 0%, #80cbc4 100%)",
         }}
       >
-        <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-30 mix-blend-overlay"></div>
+        {/* Background texture removed */}
         <div className="container mx-auto px-4 py-16 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
             <div className="order-2 md:order-1 text-left animate-fadeIn">

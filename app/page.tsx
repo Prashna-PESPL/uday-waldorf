@@ -209,7 +209,7 @@ export default function Home() {
 
       {/* Morning - Learning Section */}
       <section ref={(el) => (sectionsRef.current.morning = el)} className="min-h-screen py-20 bg-white relative">
-        <div className="absolute inset-0 bg-[url('/images/texture-paper.png')] opacity-10"></div>
+        {/* Background texture removed */}
         <div className="container mx-auto px-4 py-16 relative z-10">
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
             The Joy of Discovery

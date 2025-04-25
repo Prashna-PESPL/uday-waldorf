@@ -8,8 +8,11 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("dawn")
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [navBg, setNavBg] = useState("rgba(255, 255, 255, 0.8)")
+  const [navBorder, setNavBorder] = useState("1px solid rgba(0, 0, 0, 0.1)")
   const sectionsRef = useRef<{ [key: string]: HTMLDivElement | null }>({
     dawn: null,
     morning: null,

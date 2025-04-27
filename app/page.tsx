@@ -8,28 +8,67 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const sections = [
-  { id: "dawn", label: "Welcome" },
-  { id: "morning", label: "Learning" },
-  { id: "midday", label: "Rhythm" },
-  { id: "afternoon", label: "Community" },
-  { id: "sunset", label: "Our Story" },
-  { id: "cta", label: "Admissions" },
+  { 
+    id: "home", 
+    label: "Home",
+    submenu: [
+      { id: "rhythm", label: "Rhythm & Play" },
+      { id: "teachers", label: "Know Our Teachers" },
+      { id: "community", label: "Community & Care" },
+      { id: "story", label: "The Uday Story" },
+      { id: "application", label: "Application" }
+    ]
+  },
+  { id: "pedagogy", label: "Pedagogy" },
+  { id: "blogs", label: "Blogs" },
+  { id: "podcasts", label: "Podcasts" },
+  { id: "events", label: "Events" },
+  { 
+    id: "video-library", 
+    label: "Video Library",
+    submenu: [
+      { id: "testimonials", label: "Testimonials" }
+    ]
+  },
 ]
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("dawn")
+  const [activeSection, setActiveSection] = useState("home")
   const [scrollPosition, setScrollPosition] = useState(0)
   const [navBg, setNavBg] = useState("rgba(255, 255, 255, 0.8)")
   const [navBorder, setNavBorder] = useState("1px solid rgba(0, 0, 0, 0.1)")
   const [navVisible, setNavVisible] = useState(false)
-  const sectionsRef = useRef<{ [key: string]: HTMLDivElement | null }>({
-    dawn: null,
-    morning: null,
-    midday: null,
-    afternoon: null,
-    sunset: null,
-    cta: null,
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
+  const [showAllTestimonials, setShowAllTestimonials] = useState(false)
+  const sectionsRef = useRef<{
+    home: HTMLDivElement | null
+    pedagogy: HTMLDivElement | null
+    blogs: HTMLDivElement | null
+    podcasts: HTMLDivElement | null
+    events: HTMLDivElement | null
+    rhythm: HTMLDivElement | null
+    teachers: HTMLDivElement | null
+    community: HTMLDivElement | null
+    story: HTMLDivElement | null
+    application: HTMLDivElement | null
+    'video-library': HTMLDivElement | null
+    testimonials: HTMLDivElement | null
+    cta: HTMLDivElement | null
+  }>({
+    home: null,
+    pedagogy: null,
+    blogs: null,
+    podcasts: null,
+    events: null,
+    rhythm: null,
+    teachers: null,
+    community: null,
+    story: null,
+    application: null,
+    'video-library': null,
+    testimonials: null,
+    cta: null
   })
 
   useEffect(() => {
@@ -64,10 +103,21 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (section: string) => {
-    sectionsRef.current[section]?.scrollIntoView({ behavior: "smooth" })
-    setMobileMenuOpen(false)
-  }
+  const scrollToSection = (section: 'home' | 'pedagogy' | 'blogs' | 'podcasts' | 'events' | 'teachers' | 'story' | 'cta' | 'video-library' | 'testimonials' | 'rhythm' | 'community' | 'application') => {
+    const element = sectionsRef.current[section];
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const section = href.slice(1) as 'home' | 'pedagogy' | 'blogs' | 'podcasts' | 'events' | 'teachers' | 'story' | 'cta' | 'video-library' | 'testimonials' | 'rhythm' | 'community' | 'application';
+      scrollToSection(section);
+    }
+  };
 
   return (
     <div className="relative">
@@ -96,15 +146,43 @@ export default function Home() {
 
             <div className="hidden md:flex space-x-8">
               {sections.map((section) => (
+                <div key={section.id} className="relative group">
                 <button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  className={`text-sm font-medium ${
+                    onClick={() => {
+                      if (!section.submenu) {
+                        scrollToSection(section.id as keyof typeof sectionsRef.current);
+                      }
+                      setOpenSubmenu(openSubmenu === section.id ? null : section.id);
+                    }}
+                    className={`text-sm font-medium flex items-center ${
                     activeSection === section.id ? "text-amber-600" : "text-stone-600 hover:text-stone-800"
                   } transition-colors duration-300`}
                 >
                   {section.label}
+                    {section.submenu && (
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    )}
+                  </button>
+                  
+                  {section.submenu && (
+                    <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <div className="bg-white rounded-lg shadow-lg border border-stone-100 py-2">
+                        {section.submenu.map((item) => (
+                          <button
+                            key={item.id}
+                            onClick={() => {
+                              scrollToSection(item.id as keyof typeof sectionsRef.current);
+                              setOpenSubmenu(null);
+                            }}
+                            className="block w-full text-left px-4 py-2 text-sm text-stone-600 hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200"
+                          >
+                            {item.label}
                 </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -115,13 +193,9 @@ export default function Home() {
                 aria-label="Open mobile menu"
               >
                 {mobileMenuOpen ? (
-                  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                    <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                  </svg>
+                  <X className="h-6 w-6" />
                 ) : (
-                  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                    <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
-                  </svg>
+                  <Menu className="h-6 w-6" />
                 )}
               </button>
             </div>
@@ -129,22 +203,52 @@ export default function Home() {
 
           {mobileMenuOpen && (
             <div className="md:hidden py-4 bg-white rounded-b-lg shadow-lg animate-fadeIn">
-              <div className="flex flex-col space-y-3 pb-3">
+              <div className="flex flex-col space-y-1">
                 {sections.map((section) => (
+                  <div key={section.id}>
                   <button
-                    key={section.id}
                     onClick={() => {
-                      scrollToSection(section.id);
+                        if (!section.submenu) {
+                          scrollToSection(section.id as keyof typeof sectionsRef.current);
                       setMobileMenuOpen(false);
+                        } else {
+                          setOpenSubmenu(openSubmenu === section.id ? null : section.id);
+                        }
                     }}
-                    className={`text-sm font-medium px-4 py-2 ${
+                      className={`flex items-center justify-between w-full text-sm font-medium px-4 py-2 ${
                       activeSection === section.id 
                         ? "text-amber-600 bg-amber-50" 
                         : "text-stone-600 hover:text-stone-800 hover:bg-stone-50"
-                    } transition-all duration-300 rounded-md`}
+                      } transition-all duration-300`}
                   >
                     {section.label}
+                      {section.submenu && (
+                        <ChevronDown 
+                          className={`h-4 w-4 transition-transform duration-200 ${
+                            openSubmenu === section.id ? 'rotate-180' : ''
+                          }`} 
+                        />
+                      )}
+                    </button>
+                    
+                    {section.submenu && openSubmenu === section.id && (
+                      <div className="bg-stone-50 px-2">
+                        {section.submenu.map((item) => (
+                          <button
+                            key={item.id}
+                            onClick={() => {
+                              scrollToSection(item.id as keyof typeof sectionsRef.current);
+                              setMobileMenuOpen(false);
+                              setOpenSubmenu(null);
+                            }}
+                            className="block w-full text-left px-4 py-2 text-sm text-stone-600 hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200"
+                          >
+                            {item.label}
                   </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
@@ -154,7 +258,9 @@ export default function Home() {
 
       {/* Dawn - Welcome Section */}
       <section
-        ref={(el) => (sectionsRef.current.dawn = el)}
+        ref={(el: HTMLDivElement | null) => {
+          sectionsRef.current.home = el
+        }}
         className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden"
       >
         {/* Waldorf-inspired artistic background */}
@@ -273,14 +379,14 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animation-delay-300">
               <Button
-                onClick={() => scrollToSection("midday")}
+                onClick={() => scrollToSection("pedagogy")}
                 className="rounded-lg bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-64"
               >
                 A Day At Uday <ChevronDown className="ml-2 h-5 w-5" />
               </Button>
               
               <Button
-                onClick={() => scrollToSection("sunset")}
+                onClick={() => scrollToSection("events")}
                 className="rounded-lg bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-64"
               >
                 Apply
@@ -298,8 +404,77 @@ export default function Home() {
         </div>
       </section>
 
+      {/* The UDAY Difference Section */}
+      <section className="py-20 bg-stone-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
+              The UDAY Difference: Where Learning Feels Like Home
+            </h2>
+            <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+              At UDAY, we create an environment where children feel safe, loved, and free to explore their full potential.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Card 1 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-300">
+                <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mb-4 mx-auto">
+                  <svg className="w-8 h-8 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-serif font-semibold text-stone-800 mb-3 text-center">Nurturing Environment</h3>
+                <p className="text-stone-600 text-center">
+                  Our classrooms are designed to feel like a second home, with natural materials, warm colors, and spaces that encourage creativity and comfort.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-400">
+                <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mb-4 mx-auto">
+                  <svg className="w-8 h-8 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332-.477 4.5-1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-serif font-semibold text-stone-800 mb-3 text-center">Individual Attention</h3>
+                <p className="text-stone-600 text-center">
+                  Small class sizes ensure that each child receives the personal attention they need to thrive and develop at their own pace.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl animate-fadeIn animation-delay-500">
+                <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mb-4 mx-auto">
+                  <svg className="w-8 h-8 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-serif font-semibold text-stone-800 mb-3 text-center">Community Spirit</h3>
+                <p className="text-stone-600 text-center">
+                  Parents, teachers, and children form a close-knit community that supports and celebrates each child's unique journey.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12 animate-fadeIn animation-delay-600">
+              <Button
+                onClick={() => scrollToSection("pedagogy")}
+                className="rounded-lg bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Discover Our Approach <ChevronDown className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Morning - Learning Section */}
-      <section ref={(el) => (sectionsRef.current.morning = el)} className="min-h-screen py-20 bg-white relative">
+      <section
+        ref={(el: HTMLDivElement | null) => {
+          sectionsRef.current.pedagogy = el
+        }}
+        className="min-h-screen py-20 relative"
+      >
         {/* Background texture removed */}
         <div className="container mx-auto px-4 py-16 relative z-10">
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
@@ -371,7 +546,7 @@ export default function Home() {
 
           <div className="text-center animate-fadeIn animation-delay-500">
             <Button
-              onClick={() => scrollToSection("midday")}
+              onClick={() => scrollToSection("pedagogy")}
               className="rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Discover Our Rhythm <ChevronDown className="ml-2 h-4 w-4" />
@@ -380,13 +555,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Midday - Rhythm Section */}
+      {/* Daily Rhythm Section */}
       <section
-        ref={(el) => (sectionsRef.current.midday = el)}
-        className="min-h-screen py-20 relative"
-        style={{
-          background: "linear-gradient(to bottom, #e6f7ff 0%, #ffffff 100%)",
+        ref={(el: HTMLDivElement | null) => {
+          sectionsRef.current.rhythm = el
         }}
+        className="min-h-screen py-20 relative bg-stone-50"
       >
         {/* Background texture removed */}
         <svg className="absolute left-0 top-0 h-20 w-full text-white" preserveAspectRatio="none" viewBox="0 0 100 100">
@@ -650,9 +824,107 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Teachers Section */}
+          <section
+            ref={(el: HTMLDivElement | null) => {
+              sectionsRef.current.teachers = el
+            }}
+            className="min-h-screen py-20 relative bg-stone-50"
+          >
+            <div className="container mx-auto px-4 py-16 relative z-10">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
+                Know Our Teachers
+              </h2>
+              <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+                Our dedicated teachers bring warmth, expertise, and a deep understanding of Waldorf education to create a nurturing learning environment.
+              </p>
+
+              <div className="max-w-6xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                  {/* Text Content */}
+                  <div className="space-y-6 animate-fadeIn animation-delay-300">
+                    <div className="bg-white rounded-xl p-6 shadow-lg">
+                      <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-4">
+                        Waldorf-Trained Educators
+                      </h3>
+                      <p className="text-stone-600 mb-4">
+                        Our teachers are not just educators; they are artists, storytellers, and nurturers who understand the unique developmental stages of childhood. Each brings specialized Waldorf training and a deep commitment to holistic education.
+                      </p>
+                      <ul className="space-y-4">
+                        <li className="flex items-start">
+                          <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mr-3 shrink-0">
+                            <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <p className="text-stone-600">Extensive training in Waldorf pedagogy and child development</p>
+                        </li>
+                        <li className="flex items-start">
+                          <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mr-3 shrink-0">
+                            <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <p className="text-stone-600">Ongoing professional development and mentorship</p>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-6 shadow-lg">
+                      <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-4">
+                        Our Teaching Philosophy
+                      </h3>
+                      <p className="text-stone-600 mb-4">
+                        We believe in creating an environment where learning happens naturally through experience, creativity, and connection. Our teachers guide children to discover their unique potential.
+                      </p>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-amber-50 p-4 rounded-lg">
+                          <h4 className="font-medium text-amber-800 mb-2">Storytelling</h4>
+                          <p className="text-sm text-stone-600">Bringing subjects to life through narrative and imagination</p>
+                        </div>
+                        <div className="bg-amber-50 p-4 rounded-lg">
+                          <h4 className="font-medium text-amber-800 mb-2">Artistic Work</h4>
+                          <p className="text-sm text-stone-600">Integrating arts into every subject</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Video Content */}
+                  <div className="space-y-6 animate-fadeIn animation-delay-400">
+                    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
+                      <iframe 
+                        className="absolute inset-0 w-full h-full"
+                        src="https://www.youtube.com/embed/tZmAX5adCl0"
+                        title="Meet Our Teachers - UDAY Waldorf School"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-amber-100">
+                      <svg className="h-8 w-8 text-amber-500 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                      </svg>
+                      <p className="text-lg text-stone-700 italic leading-relaxed">
+                        "We don't just teach subjects; we nurture the whole child, helping them discover their unique gifts and potential."
+                      </p>
+                      <div className="flex items-center mt-4">
+                        <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                          <span className="text-amber-800 font-serif font-semibold">M</span>
+                        </div>
+                        <p className="text-stone-800 font-medium">Maya, Lead Teacher</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <div className="text-center mt-12 animate-fadeIn animation-delay-500">
             <Button
-              onClick={() => scrollToSection("afternoon")}
+              onClick={() => scrollToSection("events")}
               className="rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Experience Our Community <ChevronDown className="ml-2 h-4 w-4" />
@@ -661,8 +933,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Afternoon - Community Section */}
-      <section ref={(el) => (sectionsRef.current.afternoon = el)} className="min-h-screen py-20 bg-white relative">
+      {/* Community Section */}
+      <section
+        ref={(el: HTMLDivElement | null) => {
+          sectionsRef.current.community = el
+        }}
+        className="min-h-screen py-20 relative"
+      >
         {/* Background texture removed */}
         <svg className="absolute left-0 top-0 h-20 w-full" preserveAspectRatio="none" viewBox="0 0 100 100" style={{color: "#e6f7ff"}}>
           <path d="M 0 0 L 100 0 L 100 5 C 80 15, 70 35, 50 35 C 30 35, 20 15, 0 5 Z" fill="currentColor"></path>
@@ -738,8 +1015,26 @@ export default function Home() {
           <div className="max-w-3xl mx-auto animate-fadeIn animation-delay-500">
             <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-6 text-center">What Parents Say</h3>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px]">
+            {/* Horizontal Slider Container */}
+            <div className="relative">
+              {/* Scroll Container */}
+              <div className="overflow-x-auto pb-4 hide-scrollbar">
+                <div className="flex space-x-6 min-w-max px-4">
+                  {/* Testimonial Cards - Each card is now horizontally arranged */}
+                  <div className="w-[400px] flex-shrink-0 bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl">
+                    <div className="flex flex-col items-center mb-6">
+                      <div className="w-48 h-48 rounded-full overflow-hidden mb-3 border-4 border-amber-100 shadow-lg">
+                        <Image
+                          src="/placeholder-user.jpg"
+                          alt="Shikha"
+                          width={192}
+                          height={192}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                      <h4 className="text-lg font-medium text-stone-800">Shikha Sharma</h4>
+                      <p className="text-sm text-stone-500">Parent of a 7-year-old</p>
+                    </div>
                 <svg className="h-8 w-8 text-amber-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
                 </svg>
@@ -747,15 +1042,23 @@ export default function Home() {
                   "I've never seen my child so joyful and engaged in learning. At UDAY, education isn't something that
                   happens to them—it's something they actively participate in with their whole being."
                 </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
-                    <span className="text-amber-800 font-serif">S</span>
                   </div>
-                  <p className="text-stone-800 font-medium">Shikha, parent of a 7-year-old</p>
-                </div>
-              </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl hover:translate-y-[-2px]">
+                  {/* Repeat similar structure for other testimonials */}
+                  <div className="w-[400px] flex-shrink-0 bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl">
+                    <div className="flex flex-col items-center mb-6">
+                      <div className="w-48 h-48 rounded-full overflow-hidden mb-3 border-4 border-amber-100 shadow-lg">
+                        <Image
+                          src="/placeholder-user.jpg"
+                          alt="Rahul"
+                          width={192}
+                          height={192}
+                          className="object-cover w-full h-full"
+                        />
+                </div>
+                      <h4 className="text-lg font-medium text-stone-800">Rahul Verma</h4>
+                      <p className="text-sm text-stone-500">Parent of a 5-year-old</p>
+              </div>
                 <svg className="h-8 w-8 text-amber-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
                 </svg>
@@ -763,34 +1066,140 @@ export default function Home() {
                   "The difference in my child's confidence, creativity, and love for learning is remarkable. UDAY
                   doesn't just teach subjects—it nurtures the whole child."
                 </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
-                    <span className="text-amber-800 font-serif">R</span>
                   </div>
-                  <p className="text-stone-800 font-medium">Rahul, parent of a 5-year-old</p>
+
+                  <div className="w-[400px] flex-shrink-0 bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl">
+                    <div className="flex flex-col items-center mb-6">
+                      <div className="w-48 h-48 rounded-full overflow-hidden mb-3 border-4 border-amber-100 shadow-lg">
+                        <Image
+                          src="/placeholder-user.jpg"
+                          alt="Priya"
+                          width={192}
+                          height={192}
+                          className="object-cover w-full h-full"
+                        />
                 </div>
+                      <h4 className="text-lg font-medium text-stone-800">Priya Malhotra</h4>
+                      <p className="text-sm text-stone-500">Parent of a 6-year-old</p>
               </div>
+                    <svg className="h-8 w-8 text-amber-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                    </svg>
+                    <p className="text-stone-600 italic mb-4">
+                      "The way UDAY integrates art, music, and movement into learning is magical. My daughter comes home singing songs about math and telling stories about history."
+                    </p>
             </div>
+
+                  <div className="w-[400px] flex-shrink-0 bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl">
+                    <div className="flex flex-col items-center mb-6">
+                      <div className="w-48 h-48 rounded-full overflow-hidden mb-3 border-4 border-amber-100 shadow-lg">
+                        <Image
+                          src="/placeholder-user.jpg"
+                          alt="Amit"
+                          width={192}
+                          height={192}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                      <h4 className="text-lg font-medium text-stone-800">Amit Kapoor</h4>
+                      <p className="text-sm text-stone-500">Parent of an 8-year-old</p>
+                    </div>
+                    <svg className="h-8 w-8 text-amber-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                    </svg>
+                    <p className="text-stone-600 italic mb-4">
+                      "What sets UDAY apart is how they respect each child's individual pace of development. My son has flourished in ways I never expected."
+                    </p>
           </div>
 
-          <div className="text-center mt-12 animate-fadeIn animation-delay-600">
+                  <div className="w-[400px] flex-shrink-0 bg-white rounded-xl p-6 shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl">
+                    <div className="flex flex-col items-center mb-6">
+                      <div className="w-48 h-48 rounded-full overflow-hidden mb-3 border-4 border-amber-100 shadow-lg">
+                        <Image
+                          src="/placeholder-user.jpg"
+                          alt="Neha"
+                          width={192}
+                          height={192}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                      <h4 className="text-lg font-medium text-stone-800">Neha Gupta</h4>
+                      <p className="text-sm text-stone-500">Parent of twins, age 4</p>
+                    </div>
+                    <svg className="h-8 w-8 text-amber-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                    </svg>
+                    <p className="text-stone-600 italic mb-4">
+                      "The community at UDAY is extraordinary. My twins have found a second home here, where their unique personalities are celebrated and nurtured."
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button 
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/80 hover:bg-white text-stone-800 p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-10"
+                onClick={() => {
+                  const container = document.querySelector('.overflow-x-auto');
+                  if (container) {
+                    container.scrollBy({ left: -400, behavior: 'smooth' });
+                  }
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button 
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/80 hover:bg-white text-stone-800 p-2 rounded-full shadow-lg hover:shadow-xl transition-all z-10"
+                onClick={() => {
+                  const container = document.querySelector('.overflow-x-auto');
+                  if (container) {
+                    container.scrollBy({ left: 400, behavior: 'smooth' });
+                  }
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div className="flex justify-center mt-8 space-x-2">
+              <div className="text-amber-800 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                </svg>
+                <span>Scroll to see more</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Video Button */}
+            <div className="text-center mt-8">
             <Button
-              onClick={() => scrollToSection("sunset")}
-              className="rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => scrollToSection('testimonials')}
+                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 mx-auto"
             >
-              Discover Our Story <ChevronDown className="ml-2 h-4 w-4" />
+                View Testimonial Videos
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
             </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Sunset - Origin Story Section */}
+      {/* Story Section */}
       <section
-        ref={(el) => (sectionsRef.current.sunset = el)}
-        className="min-h-screen pt-0 pb-4 relative"
-        style={{
-          background: "linear-gradient(to bottom, #ffffff 0%, #ffecd2 100%)",
+        ref={(el: HTMLDivElement | null) => {
+          sectionsRef.current.story = el
         }}
+        className="min-h-screen py-20 relative bg-stone-50"
       >
         {/* Background texture removed */}
         <svg className="absolute left-0 top-0 h-12 w-full text-white" preserveAspectRatio="none" viewBox="0 0 100 100">
@@ -901,7 +1310,7 @@ export default function Home() {
 
           <div className="text-center mt-12 animate-fadeIn animation-delay-600">
             <Button
-              onClick={() => scrollToSection("cta")}
+              onClick={() => scrollToSection("application")}
               className="rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Join Our Community <ChevronDown className="ml-2 h-4 w-4" />
@@ -912,7 +1321,9 @@ export default function Home() {
 
       {/* CTA Section */}
       <section
-        ref={(el) => (sectionsRef.current.cta = el)}
+        ref={(el: HTMLDivElement | null) => {
+          sectionsRef.current.application = el
+        }}
         className="min-h-screen py-20 relative"
         style={{
           background: "linear-gradient(to bottom, #e0f7fa 0%, #80cbc4 100%)",
@@ -1125,6 +1536,103 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Library Section */}
+      <section
+        ref={(el: HTMLDivElement | null) => {
+          sectionsRef.current['video-library'] = el
+        }}
+        className="min-h-screen py-20 relative bg-stone-50"
+      >
+        <div className="container mx-auto px-4 py-16 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-stone-800 mb-4 text-center animate-fadeIn">
+            Video Library
+          </h2>
+          <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto mb-12 animate-fadeIn animation-delay-200">
+            Explore our collection of videos showcasing the UDAY experience.
+          </p>
+
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
+              <div className="bg-white rounded-xl p-6 shadow-lg">
+                <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-4">Featured Videos</h3>
+                <div className="space-y-6">
+                  <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                    <iframe 
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/example1"
+                      title="A Day at UDAY"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                    <iframe 
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/example2"
+                      title="Waldorf Education in Action"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-lg">
+                <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-4">Video Categories</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-amber-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-amber-800 mb-2">Classroom Moments</h4>
+                    <p className="text-sm text-stone-600">See our students in action</p>
+                  </div>
+                  <div className="bg-amber-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-amber-800 mb-2">Teacher Insights</h4>
+                    <p className="text-sm text-stone-600">Learn from our educators</p>
+                  </div>
+                  <div className="bg-amber-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-amber-800 mb-2">Parent Stories</h4>
+                    <p className="text-sm text-stone-600">Hear from our community</p>
+                  </div>
+                  <div className="bg-amber-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-amber-800 mb-2">Festivals</h4>
+                    <p className="text-sm text-stone-600">Celebrate with us</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonials Section */}
+            <section
+              ref={(el: HTMLDivElement | null) => {
+                sectionsRef.current.testimonials = el
+              }}
+              className="bg-white rounded-xl p-8 shadow-lg"
+            >
+              <h3 className="text-2xl font-serif font-semibold text-stone-800 mb-6 text-center">Video Testimonials</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                  <iframe 
+                    className="absolute inset-0 w-full h-full"
+                    src="https://www.youtube.com/embed/example3"
+                    title="Parent Testimonial - Shikha"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                  <iframe 
+                    className="absolute inset-0 w-full h-full"
+                    src="https://www.youtube.com/embed/example4"
+                    title="Parent Testimonial - Rahul"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </section>
